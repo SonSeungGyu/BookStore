@@ -15,8 +15,14 @@ public interface BoardService {
 	List<BookDTO> getList();
 	
 	
+	//게시물 상세조회
+	BookDTO read(int no);
 	
+	//게시물 수정
+	void modify(BookDTO dto);
 	
+	//게시물 삭제
+	int remove(int no);
 	
 	//dto를 엔티티로
 	default Book dtoToEntity(BookDTO dto) {

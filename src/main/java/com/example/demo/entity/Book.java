@@ -27,16 +27,16 @@ public class Book extends BaseEntity{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int no;
 	
-	@Column(length=50, nullable=false)
+	@Column(length=100, nullable=false)
 	String title;
 	
-	@Column(length=20, nullable=false)
+	@Column(length=100, nullable=false)
 	String writer;
 	
-	@Column(length=20, nullable=false)
+	@Column(length=100, nullable=false)
 	String company;
 	
-	@Column(length=200, nullable=false)
+	@Column(length=500, nullable=false)
 	String summary;
 	
 	@Column(nullable=false)

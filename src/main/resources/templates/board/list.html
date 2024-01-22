@@ -30,18 +30,19 @@
 								<div class="bi-star-fill"></div>
 							</div>
 
-							[[${dto.title}]]
+							[[${dto.price}]]원
 						</div>
 					</div>
 					<!-- Product actions -->
 					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 						<div class="text-center">
-							<a class="btn btn-outline-dark mt-auto" th:href="@{/board/register}">상세정보</a>
+							<a class="btn btn-outline-dark mt-auto" th:href="@{/board/read(no = ${dto.no})}">상세정보</a>
+							
 						</div>
 					</div>
 				</div>
 			</div>
-
+	
 	</th:block>
 
 </th:block>
