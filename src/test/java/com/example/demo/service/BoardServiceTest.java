@@ -23,9 +23,9 @@ public class BoardServiceTest {
 						.company("책방")
 						.price(12000)
 						.build();
-		String title = service.register(dto);
+		int no = service.register(dto);
 		
-		System.out.println("새로운 책: " + title);
+		System.out.println("새로운 책: " + no);
 	}
 	
 	@Test
@@ -40,8 +40,7 @@ public class BoardServiceTest {
 	
 	@Test
 	public void 게시물수정() {
-		//게시물을 조회하기 위해선 db에서 데이터를 읽어와야 하므로 dto로 변환해주어야 함
-		BookDTO dto = service.read(4); 
+		BookDTO dto = service.read(10); 
 		dto.setCompany("수정");
 		dto.setPrice(120000);
 		service.modify(dto);
