@@ -17,66 +17,75 @@ import com.example.demo.service.BoardService;
 @Controller
 @RequestMapping("/board")
 public class BoardController {
-	
-	
+
+
 	@Autowired
 	BoardService service;
-	
+
 	@GetMapping("/main")
 	public void main() {
-		
+
 	}
-	
-	//목록화면
+
+	// 목록화면
 	@GetMapping("/list")
 	public void list(Model model) {
 		List<BookDTO> list = service.getList();
-		
-		model.addAttribute("list",list);
+
+		model.addAttribute("list", list);
 	}
-	
-	//등록화면 
+
+	// 등록화면
 	@GetMapping("/register")
 	public void register() {
-		
+
 	}
-	
-	//등록처리
+
+	// 등록처리
 	@PostMapping("/register")
 	public String registerPost(BookDTO dto, RedirectAttributes redirectAttributes) {
 		int no = service.register(dto);
-		redirectAttributes.addFlashAttribute("msg",no);
+		redirectAttributes.addFlashAttribute("msg", no);
 		return "redirect:/board/list";
-		
+
 	}
-	
-	//상세화면
+
+	// 상세화면
 	@GetMapping("/read")
-	public void read(@RequestParam(name="no")int no, Model model) {
+	public void read(@RequestParam(name = "no") int no, Model model) {
 		BookDTO dto = service.read(no);
-		model.addAttribute("dto",dto);
+		model.addAttribute("dto", dto);
+
+
 	}
-	
-	//수정화면
+
+
+	// 수정화면
 	@GetMapping("/modify")
-	public void modify(@RequestParam(name="no")int no, Model model) {
+	public void modify(@RequestParam(name = "no") int no, Model model) {
 		BookDTO dto = service.read(no);
-		model.addAttribute("dto",dto);
+		model.addAttribute("dto", dto);//BookDTO 타입 객체를 
 	}
-	
-	//수정진행
+
+	// 수정진행
 	@PostMapping("/modify")
 	public String modifyPost(BookDTO dto, RedirectAttributes redirectAttributes) {
 		service.modify(dto);
-		redirectAttributes.addAttribute("no",dto.getNo());
+		redirectAttributes.addAttribute("no", dto.getNo());
 		return "redirect:/board/read";
 	}
-	
-	//상품삭제
+
+	// 상품삭제
 	@PostMapping("/remove")
-	public String removePost(@RequestParam(name="no")int no) {
+	public String removePost(@RequestParam(name = "no") int no) {
 		service.remove(no);
 		return "redirect:/board/list";
 	}
+
+	///////////////////////////////////////////////////////////////////
+
+
+
+
 
 }

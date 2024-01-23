@@ -42,5 +42,8 @@ public class Book extends BaseEntity{
 	@Column(nullable=false)
 	int price;
 	
-	
+//	//이미지
+//	@OneToMany(mappedBy = "tbl_book", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+//	@OrderBy("id asc")
+//	private List<BoardImage> boardImages;
 }

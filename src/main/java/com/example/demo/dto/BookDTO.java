@@ -24,5 +24,6 @@ public class BookDTO {
 	int price;
 	LocalDateTime regDate;
 	
+
 	
 }
