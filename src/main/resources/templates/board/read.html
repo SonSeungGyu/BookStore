@@ -58,12 +58,11 @@
 					</div>
 					<div class="small mb-1">저자 [[${dto.writer}]]</div>
 					<div class="small mb-1">출판사 [[${dto.company}]]</div>
-					<div class="small mb-1">등록일
-						[[${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}]]</div>
+					<div class="small mb-1">등록일 [[${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}]]</div>
 					<p class="lead">[[${dto.summary}]]</p>
 					<div class="d-flex">
 						<a th:href="@{/board/modify(no=${dto.no})}">
-							<button type="button" class="btn btn-outline-dark">상품수정</button>
+							<button type="button" class="btn btn-outline-dark">도서정보수정</button>
 						</a>
 					</div>
 				</div>

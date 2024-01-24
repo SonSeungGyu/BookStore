@@ -22,10 +22,6 @@ public class BoardController {
 	@Autowired
 	BoardService service;
 
-	@GetMapping("/main")
-	public void main() {
-
-	}
 
 	// 목록화면
 	@GetMapping("/list")
@@ -64,7 +60,7 @@ public class BoardController {
 	@GetMapping("/modify")
 	public void modify(@RequestParam(name = "no") int no, Model model) {
 		BookDTO dto = service.read(no);
-		model.addAttribute("dto", dto);//BookDTO 타입 객체를 
+		model.addAttribute("dto", dto);
 	}
 
 	// 수정진행
@@ -82,7 +78,6 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 
-	///////////////////////////////////////////////////////////////////
 
 
 

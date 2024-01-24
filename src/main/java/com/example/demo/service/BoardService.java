@@ -10,10 +10,8 @@ public interface BoardService {
 	//상품등록
 	int register(BookDTO dto);
 	
-	
 	//게시물 목록조회
 	List<BookDTO> getList();
-	
 	
 	//게시물 상세조회
 	BookDTO read(int no);
