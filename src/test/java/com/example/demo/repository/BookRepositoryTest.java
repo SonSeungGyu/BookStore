@@ -2,6 +2,7 @@ package com.example.demo.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,27 @@ public class BookRepositoryTest {
 		for (Book book : list) {
 			System.out.println(book);
 		}
+	}
+	
+	@Test
+	void 상품단건조회() {
+		Optional<Book> opt = repository.findById(1);
+		if(opt.isPresent()) {
+			Book board = opt.get();
+			System.out.println(board);
+		}
+	}
+	
+	@Test
+	void 상품수정(){
+		Optional<Book> opt = repository.findById(1);
+		Book book = opt.get();
+		book.setWriter("수정");
+		repository.save(book);
+	}
+	
+	@Test
+	void 도서전체삭제() {
+		repository.deleteAll();
 	}
 }
