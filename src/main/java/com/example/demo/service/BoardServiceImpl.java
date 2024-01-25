@@ -43,6 +43,17 @@ public class BoardServiceImpl implements BoardService{
 		
 		return list;
 	}
+	
+	//0125검색기능
+	public List<BookDTO> searchList(String keyword){
+		List<Book> result = repository.findByTitleContaining(keyword);
+		List<BookDTO> list = new ArrayList<>();
+		
+		list = result.stream()
+						.map(entity -> entityToDto(entity))
+						.collect(Collectors.toList());
+		return list;
+	}
 
 
 	//게시물 상세조회
@@ -88,11 +99,5 @@ public class BoardServiceImpl implements BoardService{
 			return 0;
 		}
 	}
-	
-	
-	
-	
-	
-	
 	
 }

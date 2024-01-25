@@ -24,10 +24,23 @@ public class BoardController {
 
 
 	// 목록화면
+//	@GetMapping("/list")
+//	public void list(Model model) {
+//		List<BookDTO> list = service.getList();
+//
+//		model.addAttribute("list", list);
+//	}
+	
+	// (0125 수정)목록화면
 	@GetMapping("/list")
-	public void list(Model model) {
-		List<BookDTO> list = service.getList();
-
+	public void list(Model model, @RequestParam(name = "keyword" ,required = false)String keyword) {
+		List<BookDTO> list = null;
+		if(keyword == null) {
+			list = service.getList();
+		}else {
+			list = service.searchList(keyword);
+		}
+		
 		model.addAttribute("list", list);
 	}
 
@@ -51,7 +64,6 @@ public class BoardController {
 	public void read(@RequestParam(name = "no") int no, Model model) {
 		BookDTO dto = service.read(no);
 		model.addAttribute("dto", dto);
-
 
 	}
 
@@ -77,10 +89,5 @@ public class BoardController {
 		service.remove(no);
 		return "redirect:/board/list";
 	}
-
-
-
-
-
 
 }

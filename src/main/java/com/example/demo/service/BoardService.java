@@ -13,6 +13,9 @@ public interface BoardService {
 	//게시물 목록조회
 	List<BookDTO> getList();
 	
+	//(0125 수정) 게시물 검색조회
+	List<BookDTO> searchList(String keyword);
+	
 	//게시물 상세조회
 	BookDTO read(int no);
 	
@@ -21,6 +24,9 @@ public interface BoardService {
 	
 	//게시물 삭제
 	int remove(int no);
+	
+	//게시물 검색
+//	List<Book> search(String keyword);
 	
 	//dto를 엔티티로
 	default Book dtoToEntity(BookDTO dto) {
@@ -49,4 +55,6 @@ public interface BoardService {
 						.build();
 		return dto;
 	}
+	
+
 }
