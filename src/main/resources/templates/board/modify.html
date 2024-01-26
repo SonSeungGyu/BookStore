@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<th:block
-	th:replace="~{ /layout/basic :: setContent(~{this :: content})}">
-
+<th:block th:replace="~{ /layout/basic :: setContent(~{this :: content})}">
 	<!--  조각만들기 -->
 	<th:block th:fragment="content">
 		<h1 class="mt-4">도서 정보 수정</h1>
@@ -29,7 +27,6 @@
 <!-- 			<div class="form-group">
 				<label>등록일</label> <input type="text" class="form-control" name="regDate" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" >
 			</div> -->
-
 
 			<button type="button" class="btn btn-outline-dark modifyBtn">수정</button>
 			<button type="button" class="btn btn-outline-dark listBtn">목록으로</button>
