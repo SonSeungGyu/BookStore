@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.example.demo.dto.BookDTO;
 import com.example.demo.entity.Book;
 
@@ -12,6 +14,9 @@ public interface BoardService {
 	
 	//게시물 목록조회
 	List<BookDTO> getList();
+	
+	//(0126 수정) 게시물 페이징
+	Page<BookDTO> getList1(int pageNum);
 	
 	//(0125 수정) 게시물 검색조회
 	List<BookDTO> searchList(String keyword);

@@ -6,6 +6,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.BookDTO;
@@ -42,6 +46,16 @@ public class BoardServiceImpl implements BoardService{
 						.collect(Collectors.toList());
 		
 		return list;
+	}
+	
+	//0126리스트페이징처리
+	@Override
+	public Page<BookDTO> getList1(int pageNum){
+		int PageNumber = (pageNum == 0) ? 0 : pageNum-1;
+		Pageable pageable = PageRequest.of(PageNumber, 8,Sort.by("no").descending());
+		Page<Book> entityPage = repository.findAll(pageable);
+		Page<BookDTO> dtoPage = entityPage.map(entity -> entityToDto(entity));
+		return dtoPage;
 	}
 	
 	//0125검색기능
