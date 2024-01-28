@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,16 +33,28 @@ public class BoardController {
 //	}
 	
 	// (0125 수정)목록화면
+//	@GetMapping("/list")
+//	public void list(Model model, @RequestParam(name = "keyword" ,required = false)String keyword) {
+//		List<BookDTO> list = null;
+//		if(keyword == null) {
+//			list = service.getList();
+//		}else {
+//			list = service.searchList(keyword);
+//		}
+//		
+//		model.addAttribute("list", list);
+//	}
+	
 	@GetMapping("/list")
-	public void list(Model model, @RequestParam(name = "keyword" ,required = false)String keyword) {
-		List<BookDTO> list = null;
+	public void list(Model model,@RequestParam(name="page", defaultValue="0")int page, @RequestParam(name = "keyword" ,required = false)String keyword) {
 		if(keyword == null) {
-			list = service.getList();
+			Page<BookDTO> list = service.getList(page);
+			model.addAttribute("list", list);
 		}else {
-			list = service.searchList(keyword);
+			List<BookDTO> list1 = service.searchList(keyword);
+			model.addAttribute("list", list1);
 		}
 		
-		model.addAttribute("list", list);
 	}
 
 	// 등록화면

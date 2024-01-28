@@ -13,12 +13,15 @@ public interface BoardService {
 	int register(BookDTO dto);
 	
 	//게시물 목록조회
-	List<BookDTO> getList();
+	//List<BookDTO> getList();
 	
 	//(0126 수정) 게시물 페이징
-	Page<BookDTO> getList1(int pageNum);
+	Page<BookDTO> getList(int page);
 	
 	//(0125 수정) 게시물 검색조회
+	//List<BookDTO> searchList(String keyword);
+	
+	//0127수
 	List<BookDTO> searchList(String keyword);
 	
 	//게시물 상세조회

@@ -28,15 +28,15 @@ public class BoardServiceTest {
 		System.out.println("새로운 책: " + no);
 	}
 	
-	@Test
-	public void 게시물목록조회() {
-		
-		List<BookDTO> list = service.getList();
-		
-		for (BookDTO bookDTO : list) {
-			System.out.println(bookDTO);
-		}
-	}
+//	@Test
+//	public void 게시물목록조회() {
+//		
+//		List<BookDTO> list = service.getList();
+//		
+//		for (BookDTO bookDTO : list) {
+//			System.out.println(bookDTO);
+//		}
+//	}
 	
 	@Test
 	public void 게시물수정() {

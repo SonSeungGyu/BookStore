@@ -39,6 +39,20 @@ public class BookRepositoryTest {
 		repository.saveAll(list);
 		
 	}
+	@Test
+	void 도서등록() {
+		
+		for(int i =1;i<=30;i++) {
+		Book book = Book.builder()
+						.title(i + "번 도")
+						.writer("저자")
+						.company("한샘")
+						.summary("내")
+						.price(10000)
+						.build();
+		repository.save(book);
+		}
+	}
 	
 	@Test
 	void 상품목록조회() {

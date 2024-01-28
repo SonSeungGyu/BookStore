@@ -1,43 +1,64 @@
 <!DOCTYPE html>
-<th:block th:replace="~{ /layout/basic :: setContent(~{this :: content})}">
+<th:block
+	th:replace="~{ /layout/basic :: setContent(~{this :: content})}">
 
 	<!--  조각만들기 -->
 	<th:block th:fragment="content">
-			<th:block th:each = "dto : ${list}">
-				<div class="col mb-5">
-					<div class="card h-100">
-	
-						<img class="card-img-top" th:src="@{/book1.png}" alt="..." />
-						<!-- Product details -->
-						<div class="card-body p-4">
-							<div class="text-center">
-								<!-- Product name -->
-								<h5 class="fw-bolder">[[${dto.title}]]</h5>
-								<!-- Product reviews -->
-								
-								<!-- 별점 --> 
-								<div
-									class="d-flex justify-content-center small text-warning mb-2">
-									<!-- <div class="bi-star-fill"></div>
+		<th:block th:each="dto : ${list}">
+			<div class="col mb-5">
+				<div class="card h-100">
+
+					<img class="card-img-top" th:src="@{/book1.png}" alt="..." />
+					<!-- Product details -->
+					<div class="card-body p-4">
+						<div class="text-center">
+							<!-- Product name -->
+							<h5 class="fw-bolder">[[${dto.title}]]</h5>
+							<!-- Product reviews -->
+
+							<!-- 별점 -->
+							<div
+								class="d-flex justify-content-center small text-warning mb-2">
+								<!-- <div class="bi-star-fill"></div>
 									<div class="bi-star-fill"></div>
 									<div class="bi-star-fill"></div>
 									<div class="bi-star-fill"></div>
 									<div class="bi-star-fill"></div> -->
-								</div>
-	
-								<div style="color: gray">[[${dto.price}]]원</div>
 							</div>
+
+							<div style="color: gray">[[${dto.price}]]원</div>
 						</div>
-						<!-- Product actions -->
-						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto" th:href="@{/board/read(no = ${dto.no})}">상세정보</a>
-								
-							</div>
+					</div>
+					<!-- Product actions -->
+					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+						<div class="text-center">
+							<a class="btn btn-outline-dark mt-auto"
+								th:href="@{/board/read(no = ${dto.no})}">상세정보</a>
+
 						</div>
 					</div>
 				</div>
-			</th:block>
+
+			</div>
+		</th:block>
+		<div>
+			<ul
+				class="pagination h-100 justify-content-center align-items-center">
+				<!-- pagination h-100 justify-content-center -->
+				<th:block th:each="page : ${#numbers.sequence(1, list.totalPages)}">
+
+					<th:block th:if="${list.number+1 == page}">
+						<li class="page-item active"><a class="page-link"
+							th:href="@{/board/list(page=${page})}">[[${page}]]</a></li>
+					</th:block>
+
+					<th:block th:unless="${list.number+1 == page}">
+						<li class="page-item"><a class="page-link"
+							th:href="@{ /board/list (page=${page})}">[[${page}]]</a></li>
+					</th:block>
+				</th:block>
+			</ul>
+		</div>
 	</th:block>
 
 </th:block>

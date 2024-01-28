@@ -36,21 +36,21 @@ public class BoardServiceImpl implements BoardService{
 
 
 	//게시물 목록조회 
-	@Override
-	public List<BookDTO> getList() {
-		List<Book> result = repository.findAll();
-		List<BookDTO> list = new ArrayList<>();
-		
-		list = result.stream()
-						.map(entity -> entityToDto(entity))
-						.collect(Collectors.toList());
-		
-		return list;
-	}
+//	@Override
+//	public List<BookDTO> getList() {
+//		List<Book> result = repository.findAll();
+//		List<BookDTO> list = new ArrayList<>();
+//		
+//		list = result.stream()
+//						.map(entity -> entityToDto(entity))
+//						.collect(Collectors.toList());
+//		
+//		return list;
+//	}
 	
 	//0126리스트페이징처리
 	@Override
-	public Page<BookDTO> getList1(int pageNum){
+	public Page<BookDTO> getList(int pageNum){
 		int PageNumber = (pageNum == 0) ? 0 : pageNum-1;
 		Pageable pageable = PageRequest.of(PageNumber, 8,Sort.by("no").descending());
 		Page<Book> entityPage = repository.findAll(pageable);
