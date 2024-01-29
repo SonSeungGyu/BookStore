@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.example.demo.dto.BookDTO;
 import com.example.demo.entity.Book;
@@ -22,7 +23,10 @@ public interface BoardService {
 	//List<BookDTO> searchList(String keyword);
 	
 	//0127수
-	List<BookDTO> searchList(String keyword);
+	//List<BookDTO> searchList(String keyword);
+	
+	//0128검색페이징
+	Page<BookDTO> searchList1(String keyword, int pageNum);
 	
 	//게시물 상세조회
 	BookDTO read(int no);

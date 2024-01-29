@@ -53,20 +53,34 @@ public class BoardServiceImpl implements BoardService{
 	public Page<BookDTO> getList(int pageNum){
 		int PageNumber = (pageNum == 0) ? 0 : pageNum-1;
 		Pageable pageable = PageRequest.of(PageNumber, 8,Sort.by("no").descending());
+		
 		Page<Book> entityPage = repository.findAll(pageable);
+		
 		Page<BookDTO> dtoPage = entityPage.map(entity -> entityToDto(entity));
 		return dtoPage;
 	}
 	
 	//0125검색기능
-	public List<BookDTO> searchList(String keyword){
-		List<Book> result = repository.findByTitleContaining(keyword);
-		List<BookDTO> list = new ArrayList<>();
+//	public List<BookDTO> searchList(String keyword){
+//		List<Book> result = repository.findByTitleContaining(keyword);
+//		List<BookDTO> list = new ArrayList<>();
+//		
+//		list = result.stream()
+//						.map(entity -> entityToDto(entity))
+//						.collect(Collectors.toList());
+//		return list;
+//	}
+	
+	//0128검색후 페이징 처리
+	public Page<BookDTO> searchList1(String keyword, int pageNum){
 		
-		list = result.stream()
-						.map(entity -> entityToDto(entity))
-						.collect(Collectors.toList());
-		return list;
+		int pageNumber = (pageNum ==0)? 0 : pageNum-1;
+		Pageable pageable = PageRequest.of(pageNum, 8, Sort.by("no").descending());
+		
+		Page<Book> entityPage = repository.findByTitleContaining(keyword, pageable);
+		
+		Page<BookDTO> dtoPage = entityPage.map(entity -> entityToDto(entity));
+		return dtoPage;
 	}
 
 

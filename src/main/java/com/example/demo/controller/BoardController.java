@@ -45,15 +45,30 @@ public class BoardController {
 //		model.addAttribute("list", list);
 //	}
 	
+	
+	//0128기존 코드 
+//	@GetMapping("/list")
+//	public void list(Model model,@RequestParam(name="page", defaultValue="0")int page, @RequestParam(name = "keyword" ,required = false)String keyword) {
+//		if(keyword == null) {
+//			Page<BookDTO> list = service.getList(page);
+//			model.addAttribute("list", list);
+//		}else {
+//			List<BookDTO> list1 = service.searchList(keyword);
+//			model.addAttribute("list", list1);
+//		}
+//		
+//	}
+	
+	//0128검색리스트 페이징 처
 	@GetMapping("/list")
 	public void list(Model model,@RequestParam(name="page", defaultValue="0")int page, @RequestParam(name = "keyword" ,required = false)String keyword) {
+		Page<BookDTO> list = null;
 		if(keyword == null) {
-			Page<BookDTO> list = service.getList(page);
-			model.addAttribute("list", list);
+			list = service.getList(page);
 		}else {
-			List<BookDTO> list1 = service.searchList(keyword);
-			model.addAttribute("list", list1);
+			list = service.searchList1(keyword,page);
 		}
+		model.addAttribute("list", list);
 		
 	}
 
