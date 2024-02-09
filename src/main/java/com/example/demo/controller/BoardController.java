@@ -89,9 +89,10 @@ public class BoardController {
 
 	// 상세화면
 	@GetMapping("/read")
-	public void read(@RequestParam(name = "no") int no, Model model) {
+	public void read(@RequestParam(name = "no") int no, @RequestParam(defaultValue="0", name = "page")int page, Model model) {
 		BookDTO dto = service.read(no);
 		model.addAttribute("dto", dto);
+		model.addAttribute("page", page);
 
 	}
 

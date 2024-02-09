@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<th:block
-	th:replace="~{ /layout/basic :: setContent(~{this :: content})}">
-
+<th:block th:replace="~{ /layout/basic :: setContent(~{this :: content})}">
 	<!--  조각만들기 -->
 	<th:block th:fragment="content">
 		<th:block th:each="dto : ${list}">
 			<div class="col mb-5">
 				<div class="card h-100">
-
 					<img class="card-img-top" th:src="@{/book1.png}" alt="..." />
 					<!-- Product details -->
 					<div class="card-body p-4">
@@ -15,17 +12,6 @@
 							<!-- Product name -->
 							<h5 class="fw-bolder">[[${dto.title}]]</h5>
 							<!-- Product reviews -->
-
-							<!-- 별점 -->
-							<div
-								class="d-flex justify-content-center small text-warning mb-2">
-								<!-- <div class="bi-star-fill"></div>
-									<div class="bi-star-fill"></div>
-									<div class="bi-star-fill"></div>
-									<div class="bi-star-fill"></div>
-									<div class="bi-star-fill"></div> -->
-							</div>
-
 							<div style="color: gray">[[${dto.price}]]원</div>
 						</div>
 					</div>
@@ -33,15 +19,14 @@
 					<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 						<div class="text-center">
 							<a class="btn btn-outline-dark mt-auto"
-								th:href="@{/board/read(no = ${dto.no})}">상세정보</a>
+								th:href="@{/board/read(no = ${dto.no}, page=${list.number+1})}">상세정보</a>
 
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</th:block>
-		<!-- paging처 -->
+		<!-- paging처리 -->
 		<div>
 			<ul
 				class="pagination h-100 justify-content-center align-items-center">
